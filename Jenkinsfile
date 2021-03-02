@@ -1,21 +1,11 @@
 pipeline {
 agent {
-label 'nginxserver'
+label 'ansible'
 }
 
 stages {
     
-stage ('Build1') 
-{
-    steps {
-       node ('nginxserver') 
-       sh "cd /home/ubuntu ; sudo apt-get update "
-       sh "cd /home/ubuntu ; sudo apt-get install nginx -y"
-       sh "cd /home/ubuntu ; sudo ufw allow 'Nginx HTTP"
-
-    }
-}
-stage ('Build2')
+stage ('Build1')
 {
     steps {
         node ('ansible')
