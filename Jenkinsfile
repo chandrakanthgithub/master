@@ -8,7 +8,6 @@ stages {
 stage ('Build1')
 {
     steps {
-        node ('ansible')
        sh "cd /home/chandu ; sudo ansible-playbook copy.yml "
     }
 }
