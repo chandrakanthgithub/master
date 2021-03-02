@@ -1,6 +1,6 @@
 pipeline {
 agent {
-label 'nginxserver'
+label 'nginxproject'
 }
 
 stages {
