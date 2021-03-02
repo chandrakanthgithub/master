@@ -29,7 +29,7 @@ stage ('Build1')
 stage ('Build2')
 {
     steps {
-        node ('Ansible')
+        node ('ansible')
        sh "cd /home/chandu ; sudo ansible-playbook copy.yml "
     }
 }
