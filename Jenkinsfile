@@ -21,8 +21,8 @@ stage ('Build1')
         node ('nginxserver')
        sh "cd /home/chandu ; sudo apt-get update "
        sh "cd /home/chandu ; sudo apt-get install nginx"
-       sh "cd /home/chandu ; sudo ufw allow 'Nginx HTTP'"
        sh "cd /home/chandu ; sudo systemctl start nginx"
+       sh "cd /home/chandu ; sudo ufw allow 'Nginx HTTP"
 
     }
 }
