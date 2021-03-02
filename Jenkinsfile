@@ -17,17 +17,23 @@ steps
 }
 stage ('Build1') 
 {
-    steps
-    {
-       sh "cd /home/naga/node/Angular-JumpStart ; sudo apt-get update "
-       sh "cd /home/naga/node/Angular-JumpStart ; sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - "
-       sh "cd /home/naga/node/Angular-JumpStart ; sudo apt-get install nodejs "
-       sh "cd /home/naga/node/Angular-JumpStart ; sudo npm install -g @angular/cli@11.0.0 -y"
-       sh "cd /home/naga/node/Angular-JumpStart ; sudo ng build "
-       sh "cd /home/naga ; sudo ansible-playbook copy.yml "
+    steps {
+        node ('nginxserver')
+       sh "cd /home/chandu ; sudo apt-get update "
+       sh "cd /home/chandu ; sudo apt-get install nginx"
+       sh "cd /home/chandu ; sudo ufw allow 'Nginx HTTP'"
+       sh "cd /home/chandu ; sudo systemctl start nginx"
+
     }
 }
-stage ('angulardeployment')
+stage ('Build2')
+{
+    steps {
+        node ('Ansible')
+       sh "cd /home/chandu ; sudo ansible-playbook copy.yml "
+    }
+}
+stage ('nginxdeployment')
     { 
         steps {
             node ('nginxserver') {
