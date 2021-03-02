@@ -8,10 +8,10 @@ stages {
 stage ('Build1') 
 {
     steps {
-       sh "cd /home/chandu ; sudo apt-get update "
-       sh "cd /home/chandu ; sudo apt-get install apache2 -y "
-       sh "cd /home/chandu ; sudo apt-get install nginx -y"
-       sh "cd /home/chandu ; sudo ufw allow 'Nginx HTTP"
+       sh "cd /home/ubuntu ; sudo apt-get update "
+       sh "cd /home/ubuntu ; sudo apt-get install apache2 -y "
+       sh "cd /home/ubuntu ; sudo apt-get install nginx -y"
+       sh "cd /home/ubuntu ; sudo ufw allow 'Nginx HTTP"
 
     }
 }
@@ -26,7 +26,7 @@ stage ('nginxdeployment')
     { 
         steps {
             node ('nginxserver') {
-           sh "cd /home/chandu ; sudo systemctl restart nginx "
+           sh "cd /home/ubuntu ; sudo systemctl restart nginx "
     }
 }
 }
